@@ -23,6 +23,15 @@ function App() {
     }
   };
 
+  const conditionHandler = (e) => {
+    setCondition(e.target.value);
+    if (condition) {
+      setDisplay(false);
+    } else {
+      setDisplay(true);
+    }
+  };
+
   const featuresHandler = (e) => {
     let value = e.target.value;
     if (e.target.checked) {
@@ -89,14 +98,14 @@ function App() {
           </label>{" "}
           <br />
           <input
-            onChange={(e) => setCondition(e.target.value)}
+            onChange={conditionHandler}
             name="condition"
             type="radio"
             value="New"
           />{" "}
           New
           <input
-            onChange={(e) => setCondition(e.target.value)}
+            onChange={conditionHandler}
             value="Used"
             name="condition"
             type="radio"
@@ -141,6 +150,7 @@ function App() {
             className="form-control"
             type="date"
             id="dateOfStorage"
+            required
           />
           <label className="form-label" htmlFor="unitNumber">
             Storage Unit Number:
@@ -150,6 +160,7 @@ function App() {
             className="form-control"
             type="number"
             id="unitNumber"
+            required
           />
           <label className="form-label" htmlFor="unitCost">
             Unit Cost:
@@ -159,6 +170,7 @@ function App() {
             className="form-control"
             type="number"
             id="unitCost"
+            required
           />
           <label className="form-label" htmlFor="vendorName">
             Vendor Name:
@@ -168,6 +180,7 @@ function App() {
             className="form-control"
             type="text"
             id="vendorName"
+            required
           />
           <button className="btn btn-primary mt-3" type="Submit">
             Submit
