@@ -25,10 +25,8 @@ function App() {
 
   const conditionHandler = (e) => {
     setCondition(e.target.value);
-    if (condition) {
+    if (!condition) {
       setDisplay(false);
-    } else {
-      setDisplay(true);
     }
   };
 
@@ -45,8 +43,7 @@ function App() {
     e.preventDefault();
     if (condition === "") {
       setDisplay(true);
-    } else if (condition) {
-      setDisplay(false);
+    } else {
       setIsFormSubmitted(true);
     }
   };
@@ -57,8 +54,8 @@ function App() {
         <h3 className="container">Store Hub</h3>
       </nav>
 
-      <section className="container">
-        <h1>Inventory Form</h1>
+      <section className="container py-4">
+        <h1 className="mb-4">Inventory Form</h1>
         <form onSubmit={submitHandler}>
           <label className="form-label" htmlFor="productName">
             Product Name:
@@ -66,7 +63,7 @@ function App() {
           <input
             onChange={(e) => setProductName(e.target.value)}
             value={productName}
-            className="form-control"
+            className="form-control mb-2"
             type="text"
             id="productName"
             required
@@ -77,7 +74,7 @@ function App() {
           <input
             onChange={(e) => setQuantity(e.target.value)}
             value={quantity}
-            className="form-control"
+            className="form-control mb-2"
             type="number"
             id="quantity"
             required
@@ -85,7 +82,7 @@ function App() {
           <label className="form-label">Category:</label>
           <select
             onChange={(e) => setCategory(e.target.value)}
-            className="form-select"
+            className="form-select mb-2"
             required
           >
             <option value="">Select Category</option>
@@ -106,6 +103,7 @@ function App() {
           New
           <input
             onChange={conditionHandler}
+            className="ms-3"
             value="Used"
             name="condition"
             type="radio"
@@ -135,7 +133,7 @@ function App() {
           Lightweight
           <input
             onChange={featuresHandler}
-            className="form-check-input"
+            className="form-check-input ms-3"
             type="checkbox"
             value="Durable"
           />{" "}
@@ -147,7 +145,7 @@ function App() {
           </label>
           <input
             onChange={(e) => setDateOfStorage(e.target.value)}
-            className="form-control"
+            className="form-control mb-2"
             type="date"
             id="dateOfStorage"
             required
@@ -157,7 +155,7 @@ function App() {
           </label>
           <input
             onChange={(e) => setStorageUnitNumber(e.target.value)}
-            className="form-control"
+            className="form-control mb-2"
             type="number"
             id="unitNumber"
             required
@@ -167,7 +165,7 @@ function App() {
           </label>
           <input
             onChange={(e) => setUnitCost(e.target.value)}
-            className="form-control"
+            className="form-control mb-2"
             type="number"
             id="unitCost"
             required
@@ -195,8 +193,9 @@ function App() {
           <p>Quantity: {quantity}</p>
           <p>Category: {category}</p>
           <p>Condition: {condition}</p>
-          <p>Waterproof: {isWaterProof}</p>
-          <p>Features: {features.join(", ")}</p>
+          <p>Waterproof: {isWaterProof ? "Yes" : "No"}</p>
+          <p>Features: {features.length > 0 ? features.join(", ") : "none"}</p>
+
           <p>Date of Storage: {dateOfStorage}</p>
           <p>Storage Unit Number: {storageUnitNumber}</p>
           <p>Unit Cost: ${unitCost}</p>
