@@ -169,7 +169,7 @@ function App() {
             type="text"
             id="vendorName"
           />
-          <button className="btn btn-primary" type="Submit">
+          <button className="btn btn-primary mt-3" type="Submit">
             Submit
           </button>
         </form>
